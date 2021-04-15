@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
 import {Container, Typography, Card, Grid, TextField, Button} from '@material-ui/core'
 import styles from './style';
+import {MovieIcon} from '../../icons';
 
 
-export default () => {
+export default ({history}) => {
 	const [searchText, setSearchText] = useState ('');
 	const classes = styles();
 	const handleSearchTextChange = event => {
 		setSearchText(event.target.value);
 	};
 	const handleCleanTextClick = event => {
-		console.log(10);
+		setSearchText('');
 	};
 	const handleSearchTextClick = event => {
-		console.log(10);
+		history.push(`/results?movieName=${searchText}`);
 	};
 	return(
 		<Container className={classes.container}>
@@ -23,7 +24,7 @@ export default () => {
 						<Typography className={classes.title}>Bienvenide</Typography>
 					</Grid>
 					<Grid>
-						<label>Icono</label>
+						<MovieIcon className={classes.movieIcon}></MovieIcon>
 					</Grid>
 				</Grid>
 				<TextField
